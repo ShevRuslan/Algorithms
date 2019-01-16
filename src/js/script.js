@@ -4,11 +4,11 @@
 class Algorithms {
 
     /*
-        - Сортировка Пузырьком / Bubble Sort
+        - Сортировка Пузырьком / Bubble Sort | O(N^2)
         - Принимает на вход неотсортированный массив / Accepts an unsorted array as input
         - Возвращается отсортированный массив  / Returns a sorted array
     */
-    static bubbleSort(array){
+    static bubbleSort(array) {
         // Если массив пустой, то не выполнять сортировку / If the array is empty, don`t sort
         if( array.length == 0 ) return false;
 
@@ -40,6 +40,21 @@ class Algorithms {
         return newArray;
     
     }
+    
+    /* Quick Sort algorithm | O(N log N) */
+    static qsort(arr) {
+    	if (arr.length <= 1) { // basic recursion case
+		    return arr;
+	    }
+
+	    let supp = arr[ ~~(arr.length / 2) ],
+			less = quickSort( arr.filter( n => n < supp ) ), // recursively sort array of less items
+			equal = arr.filter( n => n === supp ),
+			larger = quickSort( arr.filter( n => n > supp ) ); // recursively sort array of larger items
+			
+	    return less.concat(equal, larger);	
+    }
 }
 
-console.log(Algorithms.bubbleSort([5, 1, 4, 2, 8]));
+console.log( Algorithms.bubbleSort([5, 1, 4, 2, 8]) );
+console.log( Algorithms.qsort([2, 1, 3, 5, Infinity, 5, 5, 100, 591, 100, -Infinity]) );
