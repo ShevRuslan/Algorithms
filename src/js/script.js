@@ -51,7 +51,25 @@ class Algorithms {
 
         return less.concat(equal, larger);
     }
+
+    /* Section Sort algotihm | O(N ^ 2) */
+    static sectionSort(arr) {
+        for (let i = 0; i < arr.length - 1; i++) {
+            let last = i;
+            for (let j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[last]) {
+                    last = j;
+                }
+            }
+            let number = arr[last];
+            arr[last] = arr[i];
+            arr[i] = number;
+        }
+        return arr
+    }
 }
 
 console.log(Algorithms.bubbleSort([5, 1, 4, 2, 8]));
 console.log(Algorithms.qsort([2, 1, 3, 5, Infinity, 5, 5, 100, 591, 100, -Infinity]));
+console.log(Algorithms.sectionSort([5, 1, 4, 2, 8]));
+console.log(Algorithms.sectionSort([2, 1, 3, 5, Infinity, 5, 5, 100, 591, 100, -Infinity]));
